@@ -8,6 +8,8 @@
 #include <mutex>
 #include <boost/asio.hpp>
 
+//The BOOST Example
+
 using boost::asio::ip::tcp;
 
 
@@ -37,7 +39,7 @@ int main()
         std::string URL;
         std::thread mezureTimeWait(inputWait);
 
-        std::cout << "Enter URL(example: cyberforum.ru):";
+        std::cout << "Enter URL(example mail.ru): ";
         readyMutex.lock();
 
         std::getline(std::cin, URL, '\n');
@@ -106,73 +108,3 @@ int main()
 
 
 
-
-
-/*
-
-
-#include <boost/asio/io_service.hpp>
-#include <boost/asio/steady_timer.hpp>
-#include <boost/asio.hpp>
-#include <chrono>
-#include <thread>
-#include <iostream>
-
-
-
-using namespace boost::asio;
-io_service service;
-ip::udp::socket sock(service);
-boost::asio::ip::udp::endpoint sender_ep;
-char buff[512];
-void on_read(const boost::system::error_code& err, std::size_t
-    read_bytes)
-{
-    std::cout << "read " << read_bytes << std::endl;
-    sock.async_receive_from(buffer(buff), sender_ep, on_read);
-}
-int main(int argc, char* argv[])
-{
-
-    std::cout << "begin \n";
-    ip::udp::endpoint ep(ip::address::from_string("127.0.0.1"), 8001);
-    sock.open(ep.protocol());
-    std::cout << "open\n";
-    sock.set_option(boost::asio::ip::udp::socket::reuse_address(true));
-    sock.bind(ep);
-    std::cout << "bind\n";
-    sock.async_receive_from(buffer(buff, 512), sender_ep, on_read);
-
-    std::cout << "async_receive\n";
-
-    service.run();
-
-    std::cout << "run\n";
-}
-
-
-*/
-
-//
-//
-//using namespace boost::asio;
-//
-//int main()
-//{
-//
-//
-//    io_service ioservice;
-//
-//    steady_timer timer1{ ioservice, std::chrono::seconds{2} };
-//    timer1.async_wait([](const boost::system::error_code& ec)
-//        { std::cout << "timer1 2 sec\n"; });
-//
-//    steady_timer timer2{ ioservice, std::chrono::seconds{1} };
-//    timer2.async_wait([](const boost::system::error_code& ec)
-//        { std::cout << "timer2 1 sec\n"; });
-//
-//    std::thread thread1{[&ioservice]() { ioservice.run(); }};
-//    std::thread thread2{[&ioservice]() { ioservice.run(); }};
-//    thread1.join();
-//    thread2.join();
-//}
