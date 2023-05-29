@@ -4,5 +4,9 @@
 The BOOST Example
 
 
-project->
-nuget -> boost
+tools->
+
+NuGet -> boost
+
+
+https://www.youtube.com/watch?v=PayeolMW-JY
