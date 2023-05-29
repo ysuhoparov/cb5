@@ -9,4 +9,3 @@ tools->
 NuGet -> boost
 
 
-https://www.youtube.com/watch?v=PayeolMW-JY
